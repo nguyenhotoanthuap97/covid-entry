@@ -1,6 +1,6 @@
 const kafka = require('../config/kafka')
 
-const topic = `declaration`
+const topic = `covid-declaration`
 const producer = kafka.producer()
 
 const produce = async (message) => {
