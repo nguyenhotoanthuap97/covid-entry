@@ -24,7 +24,7 @@ getVaccinationsByCitizenId = async (id) => {
     const database = client.db('covid_database')
     const vaccinationDatabase = database.collection('vaccination')
 
-    const query = { Citizen_Id: id }
+    const query = { CitizenId: id }
     return await vaccinationDatabase.find(query).toArray()
   } finally {
     await client.close()
