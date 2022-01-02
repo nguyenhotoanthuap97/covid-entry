@@ -1,4 +1,5 @@
 const kafka = require('../config/kafka')
+const VaccinationModel = require('../models/VaccinationModel')
 
 const topic = `covid-vaccination`
 const producer = kafka.producer()
@@ -23,6 +24,14 @@ const produce = async (message) => {
   return false
 };
 
+const getAllVaccinations = async () => {
+  return VaccinationModel.getVaccinations()
+}
+
+const getVaccinationsByCitizenId = async (id) => {
+  return VaccinationModel.getVaccinationsByCitizenId(id)
+}
+
 module.exports = {
-  produce
+  produce, getAllVaccinations, getVaccinationsByCitizenId
 }
