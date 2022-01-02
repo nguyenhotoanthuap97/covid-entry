@@ -1,30 +1,33 @@
 const kafka = require('../config/kafka')
+const { insertVaccination } = require('../models/VaccinationModel')
 
-const topic = 'test'
+const topic = 'vaccination'
 
 const consumer = kafka.consumer({ groupId: process.env.KAFKA_GROUP_ID })
 
 const consume = async () => {
   await consumer.connect()
-  await consumer.subscribe({ topic, fromBeginning: true })
+  await consumer.subscribe({ topic })
   await consumer.run({
-    eachMessage: ({ message }) => {
-      console.log('Received message: ' + message.key + ' ' + message.value)
+    eachMessage: async ({ message }) => {
+      await insertVaccination(JSON.parse(message.value)).catch(err => {
+        console.error('Error while inserting vaccination', err)
+      })
     }
   })
 }
 
-const startMessageConsuming = async () => {
+const startVaccinationMessageConsuming = async () => {
   consume().catch(async err => {
-    console.error('Error while starting consuming message: ', err)
+    console.error('Error while starting consuming vaccination message: ', err)
     try {
       await consumer.disconnect()
     } catch (e) {
-      console.error('Failed to disconnect consumer', e)
+      console.error('Failed to disconnect vaccination consumer', e)
     }
   })
 }
 
 module.exports = {
-  startMessageConsuming
+  startVaccinationMessageConsuming
 }
