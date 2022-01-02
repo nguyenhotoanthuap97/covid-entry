@@ -3,8 +3,7 @@ require('dotenv').config()
 const app = express()
 const bodyParser = require('body-parser')
 const port = process.env.PORT || 3001
-const { startVaccinationMessageConsuming } = require('./services/VaccinationService')
-const { startDeclarationMessageConsuming } = require('./services/DeclarationService')
+const { startMessageConsuming } = require('./services/ConsumerService')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
@@ -15,7 +14,6 @@ app.use((req, res) => {
 
 app.listen(port)
 
-startVaccinationMessageConsuming()
-// startDeclarationMessageConsuming()
+startMessageConsuming()
 
 console.log('Server started on: ' + port)

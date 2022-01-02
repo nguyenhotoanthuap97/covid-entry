@@ -1,6 +1,7 @@
 const kafka = require('../config/kafka')
+const DeclarationModel = require('../models/DeclarationModel')
 
-const topic = `declaration`
+const topic = `covid-declaration`
 const producer = kafka.producer()
 
 const produce = async (message) => {
@@ -23,6 +24,14 @@ const produce = async (message) => {
   return false
 };
 
+const getAllDeclarations = async () => {
+  return DeclarationModel.getDeclarations()
+}
+
+const getDeclarationsByCitizenId = async (id) => {
+  return DeclarationModel.getDeclarationsByCitizenId(id)
+}
+
 module.exports = {
-  produce
+  produce, getAllDeclarations, getDeclarationsByCitizenId
 }
