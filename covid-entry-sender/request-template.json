@@ -1,0 +1,45 @@
+/vaccination/submit
+
+body: {
+  "CitizenId": "123",
+  "Date": "Sun Jan 02 2022 14:38:58 GMT+0700 (Indochina Time)",
+  "Location": "Sở y tế TP. Hồ Chí Minh",
+  "Name": "",
+  "DateOfBirth": "",
+  "Sex":1,
+  "Company":"",
+  "Department":"",
+  "Phone":"",
+  "Address":"",
+  "DoseNo": 1,
+  "VacXinName":"Astrazeneca"
+}
+
+/declaration/submit
+
+body: {
+  "CitizenId": "123",
+  "Date": "Sun Jan 02 2022 14:38:58 GMT+0700 (Indochina Time)",
+  "Location": "Sở y tế TP. Hồ Chí Minh",
+  "Name": "",
+  "DateOfBirth": "",
+  "IDNo": "",
+  "IDDate": "",
+  "Sex": 1,
+  "Company": "",
+  "Department": "",
+  "Phone": "",
+  "Address": "",
+  "Fever": false,
+  "Cough": false,
+  "SoreThroat": false,
+  "LossOfSmell": false
+}
+
+GET /declarations
+
+GET /vaccinations
+
+GET /declarations/{citizenId}
+
+GET /vaccinations/{citizenId}

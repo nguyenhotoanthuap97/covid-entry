@@ -23,7 +23,7 @@ getDeclarationsByCitizenId = async (id) => {
 
     const database = client.db('covid_database')
     const declarations = database.collection('declaration')
-    const query = { Citizen_Id: id }
+    const query = { CitizenId: id }
     return await declarations.find(query).toArray()
   } finally {
     await client.close()

@@ -16,7 +16,7 @@ const produce = async (message) => {
         },
       ],
     });
-    console.log(`Declaration message for ${message.Citizen_Id} sent!`)
+    console.log(`Declaration message for ${message.CitizenId} sent!`)
     return true
   } catch (err) {
     console.error("could not send message " + err);
